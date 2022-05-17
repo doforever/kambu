@@ -1,12 +1,12 @@
 import { Container } from '@mui/material';
-import './MainLayout.scss';
+import styles from './MainLayout.module.scss';
 
 type Props = {
   children?: React.ReactNode;
 };
 
 const MainLayout: React.FC<Props> = ({ children }) => (
-  <Container className="root" component="main" maxWidth="lg">
+  <Container className={styles.root} component="main" maxWidth="lg">
     {children}
   </Container>
 );
