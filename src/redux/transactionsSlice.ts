@@ -38,6 +38,56 @@ const initialState: TransactionsState = {
       value: 10,
       name: 'Morbi et consequat tortor'
     },
+    {
+      id: '6',
+      value: 10,
+      name: 'Morbi et consequat tortor'
+    },
+    {
+      id: '7',
+      value: 10,
+      name: 'Vestibulum vestibulum'
+    },
+    {
+      id: '8',
+      value: 10,
+      name: 'Maecenas rhoncus cursusr'
+    },
+    {
+      id: '9',
+      value: 10,
+      name: 'Curabitur felis massa'
+    },
+    {
+      id: '10',
+      value: 10,
+      name: 'Morbi et consequat tortor'
+    },
+    {
+      id: '11',
+      value: 10,
+      name: 'Morbi et consequat tortor'
+    },
+    {
+      id: '12',
+      value: 10,
+      name: 'Vestibulum vestibulum'
+    },
+    {
+      id: '13',
+      value: 10,
+      name: 'Maecenas rhoncus cursusr'
+    },
+    {
+      id: '14',
+      value: 10,
+      name: 'Curabitur felis massa'
+    },
+    {
+      id: '15',
+      value: 10,
+      name: 'Morbi et consequat tortor'
+    },
   ],
 };
 
