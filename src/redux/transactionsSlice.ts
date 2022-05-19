@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
+import { v4 as uuidv4 } from 'uuid';
 
 export type Transaction = {
   id: string,
@@ -95,8 +96,11 @@ export const transactionsSlice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Transaction>) => {
-      state.data.push(action.payload);
+    add: (state, action: PayloadAction<{name: string, value: number}>) => {
+      state.data.push({
+        id: uuidv4(),
+        ...action.payload,
+      });
     },
     remove: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter(t => t.id !== action.payload);

@@ -128,6 +128,7 @@ const TransactionList = () => {
       <Stack
         alignItems="flex-end"
         spacing={2}
+        sx={{ padding: '12px' }}
       >
         <Typography variant='h3'>{sumTransactions()} EUR</Typography>
         <Typography variant='h3'>{exchange(sumTransactions(), exchangeRate)} PLN</Typography>

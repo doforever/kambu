@@ -9,7 +9,7 @@ function Rate () {
 
   return (
     <Paper className={styles.root}>
-      <Typography variant='h2'>Exchange rate</Typography>
+      <Typography component='h2' variant='h4'>Exchange rate</Typography>
       <TextField
         aria-label="Exchange rate"
         value={count}
