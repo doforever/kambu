@@ -1,10 +1,13 @@
 import { Typography, Paper, Stack } from '@mui/material';
 import { useAppSelector } from '../../app/hooks';
 import { selectTransactionsMax } from '../../redux/transactionsSlice';
+import { exchange } from '../../app/utils';
+import { selectRate } from '../../redux/rateSlice';
 import styles from './MaxTransaction.module.scss';
 
 function MaxTransaction() {
   const transaction = useAppSelector(selectTransactionsMax);
+  const exchangeRate = useAppSelector(selectRate);
 
   return (
     <Paper className={styles.root}>
@@ -19,7 +22,7 @@ function MaxTransaction() {
           <Typography variant='h4'>{transaction.name}</Typography>
           <Stack direction="row" spacing={2} justifyContent="flex-end">
             <Typography variant='body1'>{transaction.value}EUR</Typography>
-            <Typography variant='body1'>{transaction.value}PLN</Typography>
+            <Typography variant='body1'>{exchange(transaction.value, exchangeRate)}PLN</Typography>
           </Stack>
         </Stack>
       </Stack>
