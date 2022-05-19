@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { 
-  Paper, 
-  TableContainer, 
-  Table, TableHead, 
-  TableRow, 
-  TableCell, 
-  TableBody, 
-  TablePagination, 
-  Stack, 
+import {
+  Paper,
+  TableContainer,
+  Table, TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  TablePagination,
+  Stack,
   IconButton,
-  Typography } from '@mui/material';
+  Typography,
+  Divider
+} from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectTransactions, Transaction, remove } from '../../redux/transactionsSlice';
@@ -28,19 +30,19 @@ const columns: readonly Column[] = [
   {
     id: 'euro',
     label: 'EURO',
-    minWidth: 100,
+    minWidth: 50,
     align: 'right'
   },
   {
     id: 'pln',
     label: 'PLN',
-    minWidth: 100,
+    minWidth: 50,
     align: 'right',
   },
   {
     id: 'actions',
     label: 'Actions',
-    minWidth: 50,
+    minWidth: 40,
     align: 'right'
   }
 ];
@@ -75,14 +77,14 @@ const TransactionList = () => {
     setPage(newPage);
   };
 
-  const sumTransactions = () => transactions.map( t => t.value).reduce<number>((prev, curr) => (prev + curr), 0);
+  const sumTransactions = () => transactions.map(t => t.value).reduce<number>((prev, curr) => (prev + curr), 0);
 
   const rows = [...transactions.map(t => createData(t))];
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer>
-        <Table stickyHeader aria-label="sticky table">
+        <Table stickyHeader size="small" aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -125,13 +127,13 @@ const TransactionList = () => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+      <Divider/>
       <Stack
-        direction="row"
-        justifyContent="flex-end"
-        alignItems="center"
+        alignItems="flex-end"
         spacing={2}
       >
-        <Typography variant='h3'>Sum: {sumTransactions()} EUR</Typography>
+        <Typography variant='h3'>{sumTransactions()} EUR</Typography>
+        <Typography variant='h3'>{exchange(sumTransactions())} PLN</Typography>
       </Stack>
     </Paper>
   );

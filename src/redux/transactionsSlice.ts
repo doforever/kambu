@@ -85,7 +85,7 @@ const initialState: TransactionsState = {
     },
     {
       id: '15',
-      value: 10,
+      value: 11,
       name: 'Morbi et consequat tortor'
     },
   ],
@@ -109,7 +109,9 @@ export const { add, remove } = transactionsSlice.actions;
 
 // Selectors
 export const selectTransactions = (state: RootState) => state.transactions.data;
-export const selectTransactionsMax = (state: RootState) => 
-  state.transactions.data.sort((a, b) => (a.value - b.value))[0];
+export const selectTransactionsMax = (state: RootState) => {
+  const data = [...state.transactions.data];
+  return data.sort((a, b) => (b.value - a.value))[0];
+}
 
 export default transactionsSlice.reducer;
