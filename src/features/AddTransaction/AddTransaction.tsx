@@ -7,12 +7,35 @@ function AddTransaction() {
   const dispatch = useAppDispatch();
   const [name, setName] = useState('');
   const [value, setValue] = useState(0);
+  const [errors, setErrors] = useState({name: '', value: ''})
 
   const addTransaction = () => {
-    dispatch(add({ value, name }));
-    setName('');
-    setValue(0);
+    if (isNameValid() && isValueValid()) {
+      dispatch(add({ value, name }));
+      setName('');
+      setValue(0);
+    }
   };
+
+  const isNameValid = () => {
+    if (name.length > 0) {
+      setErrors({...errors, name: ''});
+      return true;
+    } else {
+      setErrors({...errors, name: 'Name required'});
+      return false;
+    }
+  };
+
+  const isValueValid = () => {
+    if (value !== 0 ) {
+      setErrors({...errors, value: ''});
+      return true;
+    } else {
+      setErrors({...errors, value: 'Value required'});
+      return false;
+    }
+  }
 
   return (
     <Paper sx={{padding: '12px'}}>
@@ -26,15 +49,19 @@ function AddTransaction() {
           value={name}
           label='Name'
           type='text'
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => {isNameValid(); setName(e.target.value);}}
           inputProps={{ step: "0.1" }}
+          error={!!errors.name}
+          helperText={errors.name}
         />
         <TextField
           value={value}
           label='EUR'
           type='number'
-          onChange={(e) => setValue(parseFloat(e.target.value))}
+          onChange={(e) => {isValueValid(); setValue(parseFloat(e.target.value));}}
           inputProps={{ step: "0.1" }}
+          error={!!errors.value}
+          helperText={errors.value}
         />
       </Stack>
     </Paper>
