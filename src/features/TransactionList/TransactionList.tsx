@@ -1,8 +1,18 @@
 import { useState } from 'react';
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Stack, Typography } from '@mui/material';
-import { useAppSelector } from '../../app/hooks';
-import { selectTransactions, Transaction } from '../../redux/transactionsSlice';
-import { Simulate } from 'react-dom/test-utils';
+import { 
+  Paper, 
+  TableContainer, 
+  Table, TableHead, 
+  TableRow, 
+  TableCell, 
+  TableBody, 
+  TablePagination, 
+  Stack, 
+  IconButton,
+  Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { selectTransactions, Transaction, remove } from '../../redux/transactionsSlice';
 
 interface Column {
   id: 'name' | 'euro' | 'pln' | 'actions';
@@ -26,14 +36,26 @@ const columns: readonly Column[] = [
     minWidth: 100,
     align: 'right',
   },
+  {
+    id: 'actions',
+    label: 'Actions',
+    minWidth: 50,
+    align: 'right'
+  }
 ];
-
-function createData({ name, value, id }: Transaction) {
-  return { id, name, euro: value, pln: value, actions: '' };
-}
 
 const TransactionList = () => {
   const transactions = useAppSelector(selectTransactions);
+  const dispatch = useAppDispatch();
+
+  function createData({ name, value, id }: Transaction) {
+    return {
+      id, name, euro: value, pln: value,
+      actions: (<IconButton aria-label="delete" onClick={() => dispatch(remove(id))}>
+        <DeleteIcon />
+      </IconButton>)
+    };
+  }
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -47,17 +69,13 @@ const TransactionList = () => {
     setPage(newPage);
   };
 
-  interface transactionSummarizer {
-    (transactions: Transaction[]): number
-  }
-
-  const sumTransactions: transactionSummarizer = (t) => t.reduce((prev, curr) => (prev.value + curr.value));
+  const sumTransactions = () => transactions.map( t => t.value).reduce<number>((prev, curr) => (prev + curr), 0);
 
   const rows = [...transactions.map(t => createData(t))];
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -74,10 +92,10 @@ const TransactionList = () => {
           </TableHead>
           <TableBody>
             {rows
-              .slice(page * 10, page * 10 + 10)
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                  <TableRow key={row.id}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -107,8 +125,7 @@ const TransactionList = () => {
         alignItems="center"
         spacing={2}
       >
-        <Typography variant='h3'>Sum:</Typography>
-        <Paper>{sumTransactions(transactions)}</Paper>
+        <Typography variant='h3'>Sum: {sumTransactions()} EUR</Typography>
       </Stack>
     </Paper>
   );

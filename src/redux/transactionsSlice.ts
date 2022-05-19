@@ -99,7 +99,7 @@ export const transactionsSlice = createSlice({
       state.data.push(action.payload);
     },
     remove: (state, action: PayloadAction<string>) => {
-      state.data.filter(t => t.id !== action.payload);
+      state.data = state.data.filter(t => t.id !== action.payload);
     }
   },
 });
