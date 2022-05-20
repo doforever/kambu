@@ -82,6 +82,7 @@ const TransactionList = () => {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <Typography sx={{ padding: '12px'}} component='h1' variant='h4' align='center'>Transaction Listing</Typography>
       <TableContainer>
         <Table stickyHeader size="small" aria-label="sticky table">
           <TableHead>
@@ -134,8 +135,8 @@ const TransactionList = () => {
         spacing={2}
         sx={{ padding: '12px' }}
       >
-        <Typography variant='h3'>{parseEUR(sumTransactions())}</Typography>
-        <Typography variant='h3'>{parsePLN(exchange(sumTransactions(), exchangeRate))}</Typography>
+        <Typography component='h3' variant='h5'>{parseEUR(sumTransactions())}</Typography>
+        <Typography component='h3' variant='h5'>{parsePLN(exchange(sumTransactions(), exchangeRate))}</Typography>
       </Stack>
     </Paper>
   );
