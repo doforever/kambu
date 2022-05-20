@@ -11,7 +11,7 @@ function MaxTransaction() {
   return (
     <Paper sx={{ padding: '12px'}}>
       <Stack spacing={2}>
-        <Typography component='h2' variant='h4'>Highest transation</Typography>
+        <Typography component='h2' variant='h4'>Highest transaction</Typography>
         <Stack 
           direction='row' 
           spacing={2} 

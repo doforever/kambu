@@ -16,7 +16,7 @@ const initialState: TransactionsState = {
   data: [
     {
       id: '1',
-      value: 10,
+      value: 10.5,
       name: 'Morbi et consequat tortor'
     },
     {
@@ -26,42 +26,42 @@ const initialState: TransactionsState = {
     },
     {
       id: '3',
-      value: 10,
+      value: 83.5,
       name: 'Maecenas rhoncus cursusr'
     },
     {
       id: '4',
-      value: 10,
+      value: 1123.88,
       name: 'Curabitur felis massa'
     },
     {
       id: '5',
-      value: 10,
+      value: 343.5,
       name: 'Morbi et consequat tortor'
     },
     {
       id: '6',
-      value: 10,
+      value: 1.09,
       name: 'Morbi et consequat tortor'
     },
     {
       id: '7',
-      value: 10,
+      value: 342.43,
       name: 'Vestibulum vestibulum'
     },
     {
       id: '8',
-      value: 10,
+      value: 14.4,
       name: 'Maecenas rhoncus cursusr'
     },
     {
       id: '9',
-      value: 10,
+      value: 12.3,
       name: 'Curabitur felis massa'
     },
     {
       id: '10',
-      value: 10,
+      value: 16.4,
       name: 'Morbi et consequat tortor'
     },
     {
