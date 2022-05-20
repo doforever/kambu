@@ -9,7 +9,7 @@ function MaxTransaction() {
   const exchangeRate = useAppSelector(selectRate);
 
   return (
-    <Paper sx={{ padding: '12px'}}>
+    <Paper sx={{ padding: '12px', width: '100%'}}>
       <Stack spacing={2}>
         <Typography component='h2' variant='h4'>Highest transaction</Typography>
         <Stack 

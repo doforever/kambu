@@ -1,8 +1,7 @@
-import { TextField, Typography, Paper } from '@mui/material';
+import { TextField, Typography, Paper, Stack } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectRate, setRate, fetchRate } from '../../redux/rateSlice';
 import { useEffect } from 'react';
-import styles from './Rate.module.scss';
 
 function Rate () {
   const count = useAppSelector(selectRate);
@@ -13,15 +12,17 @@ function Rate () {
   }, []);
 
   return (
-    <Paper className={styles.root}>
-      <Typography component='h2' variant='h4'>Exchange rate</Typography>
-      <TextField
-        aria-label="Exchange rate"
-        value={count}
-        type="number"
-        onChange={(e) => dispatch(setRate(parseFloat(e.target.value)))}
-        inputProps={{ step: "0.1"}}
-      />
+    <Paper sx={{padding: '12px', width: '100%'}}>
+      <Stack direction='row' justifyContent='space-between' alignItems='center' spacing={2} >
+        <Typography component='h2' variant='h4'>Exchange rate</Typography>
+        <TextField
+          aria-label="Exchange rate"
+          value={count}
+          type="number"
+          onChange={(e) => dispatch(setRate(parseFloat(e.target.value)))}
+          inputProps={{ step: "0.1"}}
+        />
+      </Stack>
     </Paper>
   );
 }

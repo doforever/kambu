@@ -1,31 +1,24 @@
 import Rate from './features/Rate/Rate';
 import TransactionList from './features/TransactionList/TransactionList';
-import MainLayout from './layout/MainLayout/MainLayout';
 import MaxTransaction from './features/MaxTransaction/MaxTransaction';
 import AddTransaction from './features/AddTransaction/AddTransaction';
-import { CssBaseline, StyledEngineProvider, Grid } from '@mui/material';
+import { CssBaseline, StyledEngineProvider, Stack, Container } from '@mui/material';
 
 function App() {
   return (
     <div>
       <CssBaseline />
       <StyledEngineProvider injectFirst>
-        <MainLayout>
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={6}>
+        <Container sx={{ padding: '24px' }} component="main" maxWidth="lg">
+          <Stack spacing={2} alignItems='stretch'>
+            <Stack direction={{xs:'column', md:'row'}} spacing={2}>
               <Rate />
-            </Grid>
-            <Grid item xs={12} lg={6}>
               <MaxTransaction />
-            </Grid>
-            <Grid item xs={12}>
-              <AddTransaction />
-            </Grid>
-            <Grid item xs={12} >
-              <TransactionList />
-            </Grid>
-          </Grid>
-        </MainLayout>
+            </Stack>
+            <AddTransaction />
+            <TransactionList />
+          </Stack>
+        </Container>
       </StyledEngineProvider>
     </div>
   );
