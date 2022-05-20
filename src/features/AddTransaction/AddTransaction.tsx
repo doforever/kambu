@@ -17,8 +17,9 @@ function AddTransaction() {
     }
   };
 
-  const isNameValid = () => {
-    if (name.length > 0) {
+  const isNameValid = (newName?: string) => {
+    const testedValue = typeof (newName) != 'undefined'  ? newName : name;
+    if (testedValue.length > 0) {
       setErrors({...errors, name: ''});
       return true;
     } else {
@@ -27,8 +28,9 @@ function AddTransaction() {
     }
   };
 
-  const isValueValid = () => {
-    if (value !== 0 ) {
+  const isValueValid = (newValue?: number) => {
+    const testedValue = typeof (newValue) != 'undefined' ? newValue : value;
+    if (testedValue !== 0 ) {
       setErrors({...errors, value: ''});
       return true;
     } else {
@@ -49,7 +51,7 @@ function AddTransaction() {
           value={name}
           label='Name'
           type='text'
-          onChange={(e) => {isNameValid(); setName(e.target.value);}}
+          onChange={(e) => { setName(e.target.value); isNameValid(e.target.value);}}
           inputProps={{ step: "0.1" }}
           error={!!errors.name}
           helperText={errors.name}
@@ -58,7 +60,7 @@ function AddTransaction() {
           value={value}
           label='EUR'
           type='number'
-          onChange={(e) => {isValueValid(); setValue(parseFloat(e.target.value));}}
+          onChange={(e) => { setValue(parseFloat(e.target.value)); isValueValid(parseFloat(e.target.value));}}
           inputProps={{ step: "0.1" }}
           error={!!errors.value}
           helperText={errors.value}
