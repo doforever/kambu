@@ -15,7 +15,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectTransactions, Transaction, remove } from '../../redux/transactionsSlice';
-import { exchange } from '../../app/utils';
+import { exchange, parsePLN, parseEUR } from '../../app/utils';
 import { selectRate } from '../../redux/rateSlice';
 
 interface Column {
@@ -134,8 +134,8 @@ const TransactionList = () => {
         spacing={2}
         sx={{ padding: '12px' }}
       >
-        <Typography variant='h3'>{sumTransactions().toFixed(2)} EUR</Typography>
-        <Typography variant='h3'>{exchange(sumTransactions(), exchangeRate).toFixed(2)} PLN</Typography>
+        <Typography variant='h3'>{parseEUR(sumTransactions())}</Typography>
+        <Typography variant='h3'>{parsePLN(exchange(sumTransactions(), exchangeRate))}</Typography>
       </Stack>
     </Paper>
   );

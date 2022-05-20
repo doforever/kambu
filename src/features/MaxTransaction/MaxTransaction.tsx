@@ -1,7 +1,7 @@
 import { Typography, Paper, Stack } from '@mui/material';
 import { useAppSelector } from '../../app/hooks';
 import { selectTransactionsMax } from '../../redux/transactionsSlice';
-import { exchange } from '../../app/utils';
+import { exchange, parseEUR, parsePLN } from '../../app/utils';
 import { selectRate } from '../../redux/rateSlice';
 
 function MaxTransaction() {
@@ -20,8 +20,8 @@ function MaxTransaction() {
         >
           <Typography component='h3' variant='h6'>{transaction.name}</Typography>
           <Stack direction="row" spacing={2} justifyContent="flex-end">
-            <Typography variant='body1'>{transaction.value.toFixed(2)} EUR</Typography>
-            <Typography variant='body1'>{exchange(transaction.value, exchangeRate).toFixed(2)} PLN</Typography>
+            <Typography variant='body1'>{parseEUR(transaction.value)}</Typography>
+            <Typography variant='body1'>{parsePLN(exchange(transaction.value, exchangeRate))}</Typography>
           </Stack>
         </Stack>
       </Stack>
