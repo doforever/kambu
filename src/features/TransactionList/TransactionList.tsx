@@ -32,13 +32,15 @@ const columns: readonly Column[] = [
     id: 'euro',
     label: 'EURO',
     minWidth: 50,
-    align: 'right'
+    align: 'right',
+    format: (v: number) => v.toFixed(2),
   },
   {
     id: 'pln',
     label: 'PLN',
     minWidth: 50,
     align: 'right',
+    format: (v: number) => v.toFixed(2),
   },
   {
     id: 'actions',
@@ -105,7 +107,9 @@ const TransactionList = () => {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {value}
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
                         </TableCell>
                       );
                     })}
@@ -130,8 +134,8 @@ const TransactionList = () => {
         spacing={2}
         sx={{ padding: '12px' }}
       >
-        <Typography variant='h3'>{sumTransactions()} EUR</Typography>
-        <Typography variant='h3'>{exchange(sumTransactions(), exchangeRate)} PLN</Typography>
+        <Typography variant='h3'>{sumTransactions().toFixed(2)} EUR</Typography>
+        <Typography variant='h3'>{exchange(sumTransactions(), exchangeRate).toFixed(2)} PLN</Typography>
       </Stack>
     </Paper>
   );

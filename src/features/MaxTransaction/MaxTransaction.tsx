@@ -20,8 +20,8 @@ function MaxTransaction() {
         >
           <Typography component='h3' variant='h6'>{transaction.name}</Typography>
           <Stack direction="row" spacing={2} justifyContent="flex-end">
-            <Typography variant='body1'>{transaction.value}EUR</Typography>
-            <Typography variant='body1'>{exchange(transaction.value, exchangeRate)}PLN</Typography>
+            <Typography variant='body1'>{transaction.value.toFixed(2)} EUR</Typography>
+            <Typography variant='body1'>{exchange(transaction.value, exchangeRate).toFixed(2)} PLN</Typography>
           </Stack>
         </Stack>
       </Stack>
