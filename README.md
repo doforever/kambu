@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Currency exchange app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.\
+
+It uses Axios library for data fetching and React Testing Library for testing.\
+
+UI is composed with Material UI components.
 
 ## Available Scripts
 
