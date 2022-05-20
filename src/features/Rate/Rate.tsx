@@ -1,11 +1,16 @@
 import { TextField, Typography, Paper } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { selectRate, setRate } from '../../redux/rateSlice';
+import { selectRate, setRate, fetchRate } from '../../redux/rateSlice';
+import { useEffect } from 'react';
 import styles from './Rate.module.scss';
 
 function Rate () {
   const count = useAppSelector(selectRate);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRate());
+  }, []);
 
   return (
     <Paper className={styles.root}>
