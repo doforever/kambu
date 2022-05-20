@@ -49,5 +49,6 @@ export const { setRate } = rateSlice.actions;
 
 // Selectors
 export const selectRate = (state: RootState) => state.rate.value;
+export const selectStatus = (state: RootState) => state.rate.status;
 
 export default rateSlice.reducer;
